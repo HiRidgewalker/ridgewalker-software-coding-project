@@ -1,0 +1,34 @@
+# 单节点 MinIO 对象存储服务
+name: ${MINIO_PROJECT_NAME:?MINIO_PROJECT_NAME is required}
+
+services:
+  minio:
+    image: ${MINIO_IMAGE:?MINIO_IMAGE is required}
+    container_name: ${MINIO_CONTAINER_NAME:?MINIO_CONTAINER_NAME is required}
+    # 除非手动停止，否则容器退出或 Docker 重启后自动恢复
+    restart: ${MINIO_RESTART_POLICY:?MINIO_RESTART_POLICY is required}
+    # 9000：S3 API；9001：Web 管理控制台
+    ports:
+      - "${MINIO_API_HOST_PORT:?MINIO_API_HOST_PORT is required}:9000"
+      - "${MINIO_CONSOLE_HOST_PORT:?MINIO_CONSOLE_HOST_PORT is required}:9001"
+    # MinIO 根管理员凭证，正式使用前请更换密码
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:?MINIO_ROOT_USER is required}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?MINIO_ROOT_PASSWORD is required}
+      TZ: ${MINIO_TZ:?MINIO_TZ is required}
+    # 将宿主机数据目录绑定挂载到容器内的 /data 目录。
+    # 启动前必须在宿主机创建该目录，并确保 Docker 有权读写该目录。
+    volumes:
+      - type: bind
+        source: ${MINIO_DATA_DIR:?MINIO_DATA_DIR is required}
+        target: /data
+        read_only: false
+        bind:
+          # 路径不存在时直接报错，避免因路径写错而自动创建意外目录。
+          create_host_path: false
+    # 使用 /data 存储数据，并固定控制台监听端口为 9001
+    command:
+      - server
+      - /data
+      - --console-address
+      - "${MINIO_CONSOLE_ADDRESS:?MINIO_CONSOLE_ADDRESS is required}"

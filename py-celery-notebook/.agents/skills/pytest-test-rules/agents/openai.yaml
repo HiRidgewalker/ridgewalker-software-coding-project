@@ -1,0 +1,9 @@
+interface:
+  display_name: "pytest-test-rules"
+  short_description: "需求显式要求测试或修复缺陷时，按规则编写并执行 pytest 用例"
+policy:
+  allow_implicit_invocation: true
+  products:
+    - "chatgpt"
+    - "codex"
+    - "api"

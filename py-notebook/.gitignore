@@ -1,0 +1,30 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.idea/
+.vscode/
+*.sqlite
+.ipynb_checkpoints/
+.DS_Store
+
+# 虚拟环境与本地配置
+.venv/
+.env
+.env.*
+!.env.example
+
+# 工具缓存与覆盖率
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# 日志
+*.log

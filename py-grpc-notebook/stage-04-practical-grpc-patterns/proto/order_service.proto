@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package stage4;
+
+import "common.proto";
+
+message OrderRequest {
+  string order_id = 1;
+}
+
+message OrderReply {
+  message Item {
+    string sku = 1;
+    int32 quantity = 2;
+    Money unit_price = 3;
+  }
+
+  string order_id = 1;
+  int64 user_id = 2;
+  bool paid = 3;
+  repeated Item items = 4;
+}
+
+service OrderService {
+  rpc GetOrder (OrderRequest) returns (OrderReply);
+}
+

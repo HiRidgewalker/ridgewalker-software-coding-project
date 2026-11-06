@@ -1,0 +1,25 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.venv/
+.idea/
+.codex
+
+# 构建产物与工具缓存
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# 日志、编辑器与系统文件
+*.log
+.vscode/
+.DS_Store
+Thumbs.db
+.ipynb_checkpoints/

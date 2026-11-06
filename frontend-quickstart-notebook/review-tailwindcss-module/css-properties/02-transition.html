@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Transition - 过渡效果</title>
+  <style>
+    /* 全局重置 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 40px;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    h2 {
+      margin: 40px 0 20px;
+      color: #555;
+      font-size: 20px;
+    }
+
+    /* 展示区域容器 */
+    .demo-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    /* 基础盒子样式 */
+    .demo-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 180px;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background: #3b82f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      cursor: pointer;
+      /* 鼠标指针变为手型，提示可交互 */
+      cursor: pointer;
+    }
+
+    .label {
+      color: #666;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* ========== 1. transition - 单属性过渡 ========== */
+    /*
+     * transition: property duration timing-function delay
+     *
+     * 作用：在元素属性值发生变化时添加过渡效果，让变化平滑进行
+     *
+     * 参数说明：
+     * - property: 要过渡的 CSS 属性（如 background-color, transform 等）
+     * - duration: 过渡时长（如 0.3s, 300ms）
+     * - timing-function: 缓动函数（ease, linear, ease-in, ease-out, ease-in-out）
+     * - delay: 延迟时间，等待多久后开始过渡
+     *
+     * 简写形式：
+     * - transition: all 0.3s    // all 表示所有属性
+     * - transition: background 0.3s, transform 0.3s  // 多个属性分别指定
+     */
+
+    /* 背景颜色过渡 */
+    .transition-bg {
+      /* background-color 变化时添加 0.3s 过渡 */
+      transition: background-color 0.3s;
+    }
+
+    .transition-bg:hover {
+      /* 悬停时背景变为绿色 */
+      background-color: #22c55e;
+    }
+
+    /* 变换过渡 */
+    .transition-transform {
+      /* transform 变化时添加 0.3s 过渡 */
+      transition: transform 0.3s;
+    }
+
+    .transition-transform:hover {
+      /* 悬停时放大 1.2 倍 */
+      transform: scale(1.2);
+    }
+
+    /* 透明度过渡 */
+    .transition-opacity {
+      transition: opacity 1s;
+    }
+
+    .transition-opacity:hover {
+      opacity: 0.5;
+    }
+
+    /* 宽度过渡 */
+    .transition-width {
+      transition: width 0.3s;
+    }
+
+    .transition-width:hover {
+      width: 150px;
+    }
+
+
+    /* ========== 2. transition-duration - 过渡时长 ========== */
+    /*
+     * transition-duration: time
+     * 作用：指定过渡完成的耗时
+     * 单位：秒(s) 或 毫秒(ms)
+     */
+
+    .duration-fast {
+      /* 快速过渡：150ms */
+      transition: all 0.15s;
+    }
+
+    .duration-normal {
+      /* 正常过渡：300ms */
+      transition: all 0.3s;
+    }
+
+    .duration-slow {
+      /* 慢速过渡：800ms */
+      transition: all 0.8s;
+    }
+
+    .duration-fast:hover,
+    .duration-normal:hover,
+    .duration-slow:hover {
+      transform: scale(1.2);
+    }
+
+
+    /* ========== 3. transition-timing-function - 缓动函数 ========== */
+    /*
+     * transition-timing-function: function
+     * 作用：控制过渡的速度变化曲线
+     *
+     * 常用值：
+     * - ease:        开始慢，中间快，结束慢（默认值）
+     * - linear:      匀速变化
+     * - ease-in:     慢速开始，逐渐加快
+     * - ease-out:   快速开始，逐渐减慢
+     * - ease-in-out: 类似 ease 但更明显
+     * - steps(n):   分 n 步变化
+     * - cubic-bezier(): 自定义贝塞尔曲线
+     */
+
+    .timing-linear {
+      /* linear: 匀速移动 */
+      transition: transform 1s linear;
+    }
+
+    .timing-ease {
+      /* ease: 默认值，慢-快-慢 */
+      transition: transform 1s ease;
+    }
+
+    .timing-ease-in {
+      /* ease-in: 慢速开始 */
+      transition: transform 1s ease-in;
+    }
+
+    .timing-ease-out {
+      /* ease-out: 慢速结束 */
+      transition: transform 1s ease-out;
+    }
+
+    .timing-ease-in-out {
+      /* ease-in-out: 两头慢中间快 */
+      transition: transform 1s ease-in-out;
+    }
+
+    .timing-linear:hover,
+    .timing-ease:hover,
+    .timing-ease-in:hover,
+    .timing-ease-out:hover,
+    .timing-ease-in-out:hover {
+      transform: translateX(60px);
+    }
+
+
+    /* ========== 4. transition-delay - 延迟 ========== */
+    /*
+     * transition-delay: time
+     * 作用：指定过渡开始前的等待时间
+     * 单位：秒(s) 或 毫秒(ms)
+     */
+
+    .delay-none {
+      transition: transform 0.5s 0s;     /* 无延迟，立即开始 */
+    }
+
+    .delay-short {
+      transition: transform 0.5s 0.3s;    /* 延迟 0.3s 后开始 */
+    }
+
+    .delay-long {
+      transition: transform 0.5s 1s;      /* 延迟 1s 后开始 */
+    }
+
+    .delay-none:hover,
+    .delay-short:hover,
+    .delay-long:hover {
+      transform: translateX(60px);
+    }
+
+
+    /* ========== 5. 综合使用 ========== */
+    /* 多个属性同时过渡 */
+    .transition-multi {
+      /* 同时过渡背景色、变换和圆角，总时长 0.5s */
+      transition: background-color 0.5s, transform 0.5s, border-radius 0.5s;
+    }
+
+    .transition-multi:hover {
+      background-color: #8b5cf6;
+      /* transform: scale(1.2) rotate(15deg); */
+      transform: scale(1.2);
+      border-radius: 50%;
+    }
+
+    /* 使用 all 关键字 */
+    .transition-all {
+      /* all 表示所有变化的属性都会添加过渡 */
+      transition: all 0.5s;
+    }
+
+    .transition-all:hover {
+      background-color: #f59e0b;
+      transform: scale(1.1) translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS Transition - 过渡效果</h1>
+
+  <!-- 1. 单属性过渡 -->
+  <h2>1. 基础过渡 - 单属性</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box transition-bg">悬停</div>
+        <p class="label">background-color<br>过渡</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box transition-transform">悬停</div>
+        <p class="label">transform<br>过渡</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box transition-opacity">悬停</div>
+        <p class="label">opacity<br>过渡</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box transition-width">悬停</div>
+        <p class="label">width<br>过渡</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 2. 过渡时长对比 -->
+  <h2>2. 过渡时长对比</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box duration-fast">快速 0.15s</div>
+        <p class="label">duration-fast<br>150ms</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box duration-normal">正常 0.3s</div>
+        <p class="label">duration-normal<br>300ms</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box duration-slow">慢速 0.8s</div>
+        <p class="label">duration-slow<br>800ms</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 3. 缓动函数对比 -->
+  <h2>3. 缓动函数对比</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box timing-linear">linear</div>
+        <p class="label">linear<br>匀速</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box timing-ease">ease</div>
+        <p class="label">ease<br>慢-快-慢</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box timing-ease-in">ease-in</div>
+        <p class="label">ease-in<br>慢速开始</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box timing-ease-out">ease-out</div>
+        <p class="label">ease-out<br>慢速结束</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box timing-ease-in-out">ease-in-out</div>
+        <p class="label">ease-in-out<br>两头慢中间快</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 4. 延迟对比 -->
+  <h2>4. 过渡延迟对比</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box delay-none">无延迟</div>
+        <p class="label">delay-none<br>0s 延迟</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box delay-short">短延迟</div>
+        <p class="label">delay-short<br>0.3s 延迟</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box delay-long">长延迟</div>
+        <p class="label">delay-long<br>1s 延迟</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 5. 综合使用 -->
+  <h2>5. 综合使用 - 多属性过渡</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box transition-multi">多属性</div>
+        <p class="label">background + transform<br>+ border-radius</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box transition-all">all</div>
+        <p class="label">transition: all 0.5s<br>所有属性</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

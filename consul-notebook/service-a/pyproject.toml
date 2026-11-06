@@ -1,0 +1,28 @@
+[project]
+name = "service-a"
+version = "0.1.0"
+description = "支持 Consul 服务注册与发现的 FastAPI 服务 A"
+readme = "README.md"
+authors = [
+    { name = "limber", email = "1357644645@qq.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.141.1",
+    "httpx>=0.28.1",
+    "pydantic-settings>=2.15.0",
+    "uvicorn[standard]>=0.53.0",
+]
+
+[project.scripts]
+main = "service_a:run"
+
+[build-system]
+requires = ["uv_build>=0.11.4,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+]

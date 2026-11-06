@@ -1,0 +1,15 @@
+jenkins_data/
+**/node_modules/
+**/dist/
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/
+**/reports/
+
+# 本地配置、编辑器与日志
+**/.env
+**/.idea/
+**/.vscode/
+**/.DS_Store
+**/*.log

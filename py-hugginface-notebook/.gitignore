@@ -1,0 +1,61 @@
+# Python 缓存与编译产物
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# 虚拟环境
+.venv/
+venv/
+env/
+.venv.bak/
+
+# 打包与构建产物
+build/
+dist/
+wheels/
+*.egg-info/
+*.egg
+
+# 测试与工具缓存
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+
+# 本地配置与敏感信息
+.env
+.env.*
+!.env.example
+
+# 日志与临时文件
+*.log
+*.pid
+*.tmp
+
+# 编辑器与系统文件
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Hugging Face 缓存、模型与训练产物
+.cache/
+hf_cache/
+huggingface/
+models/
+tmp_trainer_output/
+runs/
+wandb/
+*.safetensors
+*.bin
+*.ckpt
+*.pt
+*.pth

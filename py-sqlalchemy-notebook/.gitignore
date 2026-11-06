@@ -1,0 +1,53 @@
+# 工具本地状态
+.codewhale/
+.deepseek/
+
+# Python 缓存与编译产物
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# 虚拟环境
+.venv/
+venv/
+
+# 打包与构建产物
+build/
+dist/
+wheels/
+*.egg-info/
+
+# 测试与工具缓存
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# 本地配置与敏感信息
+.env
+.env.*
+!.env.example
+
+# SQLite 数据库与日志
+*.db
+*.sqlite
+*.sqlite3
+*.sqlite3-journal
+*.db-journal
+
+# 日志与临时文件
+*.log
+*.pid
+*.tmp
+
+# 编辑器与系统文件
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/

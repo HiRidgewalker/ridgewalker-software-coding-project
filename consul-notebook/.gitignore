@@ -1,0 +1,38 @@
+# Python 缓存与编译产物
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# 虚拟环境
+.venv/
+venv/
+
+# 打包与构建产物
+build/
+dist/
+wheels/
+*.egg-info/
+
+# 测试与工具缓存
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# 本地配置与敏感信息
+.env
+.env.*
+!.env.example
+
+# 日志与运行状态
+*.log
+*.pid
+
+# 编辑器与系统文件
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

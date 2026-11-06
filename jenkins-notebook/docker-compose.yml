@@ -1,0 +1,17 @@
+services:
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile.jenkins
+    image: learning-jenkins-controller:2.568-jdk21
+    container_name: jenkins
+    restart: unless-stopped
+    ports:
+      - "8080:8080"                          # Web UI
+      - "50000:50000"                        # 入站 Agent 通信端口；本地单机练习可保留
+    volumes:
+      - ./jenkins_data:/var/jenkins_home     # 持久化 Jenkins 数据
+      - /var/run/docker.sock:/var/run/docker.sock  # 本地练习：让 Jenkins 调用宿主机 Docker
+    environment:
+      - TZ=Asia/Shanghai
+    user: root                               # 避免文件权限问题

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Git Commit On Demand"
+  short_description: "显式调用时检查状态、暂存并提交代码"
+  default_prompt: "Use $git-commit-on-demand to check git status, stage changes, and commit with the message I provide."
+
+policy:
+  allow_implicit_invocation: false

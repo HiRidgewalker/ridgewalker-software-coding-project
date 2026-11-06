@@ -1,0 +1,5 @@
+interface:
+  display_name: "uv-fastapi-vscode-config"
+  short_description: "为 uv + FastAPI 项目生成 VS Code 配置，含整项目与单模块两套调试"
+policy:
+  allow_implicit_invocation: false

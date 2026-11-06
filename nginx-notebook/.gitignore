@@ -1,0 +1,15 @@
+# 本地运行产物
+logs/
+*.log
+*.pid
+
+# 临时文件
+*.swp
+*.tmp
+*~
+
+# 编辑器与系统文件
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

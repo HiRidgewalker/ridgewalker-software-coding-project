@@ -1,0 +1,23 @@
+.DS_Store
+.idea/
+__pycache__/
+.pytest_cache/
+.venv/
+
+# 构建产物与工具缓存
+*.py[cod]
+build/
+dist/
+wheels/
+*.egg-info/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# 本地配置与日志
+.env
+.env.*
+!.env.example
+*.log
+

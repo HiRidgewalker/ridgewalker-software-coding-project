@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>综合实战 - 按钮悬停效果</title>
+  <style>
+    /* 全局重置 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 40px;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    h2 {
+      margin: 40px 0 20px;
+      color: #555;
+      font-size: 20px;
+    }
+
+    .demo-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 40px;
+      justify-content: center;
+    }
+
+    /* ========== 示例1: 按钮悬停效果 ========== */
+    /*
+     * 常见按钮悬停效果组合：
+     * 1. 背景色变化
+     * 2. 文字颜色变化
+     * 3. 轻微上移
+     * 4. 添加阴影
+     */
+
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      /* 关键：同时过渡多个属性 */
+      transition:
+        background-color 0.3s,
+        color 0.3s,
+        transform 0.3s,
+        box-shadow 0.3s;
+    }
+
+    /* 按钮1: 背景色 + 上移 + 阴影 */
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    /* 按钮2: 边框 + 背景填充 */
+    .btn-outline {
+      background: transparent;
+      color: #3b82f6;
+      border: 2px solid #3b82f6;
+    }
+
+    .btn-outline:hover {
+      background: #3b82f6;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* 按钮3: 缩放效果 */
+    .btn-scale {
+      background: #22c55e;
+      color: white;
+    }
+
+    .btn-scale:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
+    }
+
+    /* 按钮4: 旋转效果 */
+    .btn-rotate {
+      background: #f59e0b;
+      color: white;
+    }
+
+    .btn-rotate:hover {
+      transform: rotate(3deg) scale(1.02);
+    }
+
+    /* 按钮5: 边框旋转（方形变圆形） */
+    .btn-circle {
+      background: #8b5cf6;
+      color: white;
+      border-radius: 8px;
+      transition:
+        border-radius 0.3s,
+        transform 0.3s,
+        background-color 0.3s;
+    }
+
+    .btn-circle:hover {
+      border-radius: 50%;
+      background: #7c3aed;
+      transform: rotate(180deg);
+    }
+
+
+    /* ========== 示例2: 卡片悬停效果 ========== */
+    .card {
+      width: 200px;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition:
+        transform 0.3s,
+        box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      /* 图片本身也可以有动画 */
+      transition: transform 0.3s;
+    }
+
+    .card:hover .card-image {
+      transform: scale(1.05);
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* 卡片2: 3D 翻转效果 */
+    .card-3d {
+      perspective: 1000px;
+      width: 200px;
+      height: 250px;
+    }
+
+    .card-3d-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .card-3d:hover .card-3d-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-3d-front,
+    .card-3d-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card-3d-front {
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .card-3d-back {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+
+    /* ========== 示例3: 列表项悬停效果 ========== */
+    .list {
+      width: 300px;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition:
+        background-color 0.2s,
+        padding-left 0.3s,
+        box-shadow 0.3s;
+    }
+
+    .list-item:hover {
+      background: #f0f9ff;
+      padding-left: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .list-icon {
+      width: 40px;
+      height: 40px;
+      background: #3b82f6;
+      border-radius: 8px;
+      margin-right: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      transition: transform 0.3s;
+    }
+
+    .list-item:hover .list-icon {
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    .list-content h4 {
+      color: #333;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .list-content p {
+      color: #666;
+      font-size: 14px;
+    }
+
+
+    /* ========== 示例4: 加载动画 ========== */
+    .loader {
+      width: 50px;
+      height: 50px;
+      background: #3b82f6;
+      border-radius: 8px;
+      animation: load 1s ease-in-out infinite;
+    }
+
+    @keyframes load {
+      0%, 100% {
+        transform: rotate(0deg) scale(1);
+      }
+      25% {
+        transform: rotate(90deg) scale(0.8);
+      }
+      50% {
+        transform: rotate(180deg) scale(1);
+      }
+      75% {
+        transform: rotate(270deg) scale(0.8);
+      }
+    }
+
+    /* 脉冲效果 */
+    .pulse {
+      width: 50px;
+      height: 50px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.7;
+      }
+      50% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0.95);
+        opacity: 0.7;
+      }
+    }
+
+    /* 闪烁效果 */
+    .blink {
+      width: 50px;
+      height: 50px;
+      background: #ef4444;
+      border-radius: 8px;
+      animation: blink 1s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.3;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>综合实战 - 真实场景应用</h1>
+
+  <!-- 示例1: 按钮悬停效果 -->
+  <h2>1. 按钮悬停效果</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <button class="btn btn-primary">主要按钮</button>
+      <button class="btn btn-outline">边框按钮</button>
+      <button class="btn btn-scale">缩放按钮</button>
+      <button class="btn btn-rotate">旋转按钮</button>
+      <button class="btn btn-circle">圆形旋转</button>
+    </div>
+  </div>
+
+
+  <!-- 示例2: 卡片悬停效果 -->
+  <h2>2. 卡片悬停效果</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="card">
+        <div class="card-image"></div>
+        <h3 class="card-title">卡片标题</h3>
+        <p class="card-desc">这是卡片的描述文字，悬停时整张卡片会上浮。</p>
+      </div>
+
+      <div class="card-3d">
+        <div class="card-3d-inner">
+          <div class="card-3d-front">
+            <h3>悬停翻转</h3>
+            <p>将鼠标移上来看看</p>
+          </div>
+          <div class="card-3d-back">
+            <h3>背面内容</h3>
+            <p>3D 翻转效果</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 示例3: 列表项悬停效果 -->
+  <h2>3. 列表项悬停效果</h2>
+  <div class="demo-container">
+    <div class="demo-row" style="justify-content: flex-start;">
+      <div class="list">
+        <div class="list-item">
+          <div class="list-icon">A</div>
+          <div class="list-content">
+            <h4>列表项 A</h4>
+            <p>这是描述文字</p>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="list-icon">B</div>
+          <div class="list-content">
+            <h4>列表项 B</h4>
+            <p>这是描述文字</p>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="list-icon">C</div>
+          <div class="list-content">
+            <h4>列表项 C</h4>
+            <p>这是描述文字</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 示例4: 加载动画 -->
+  <h2>4. 加载动画</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="loader"></div>
+      <div class="pulse"></div>
+      <div class="blink"></div>
+    </div>
+  </div>
+</body>
+</html>

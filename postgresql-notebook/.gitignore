@@ -1,0 +1,17 @@
+# 本地数据库导出与备份
+*.dump
+*.backup
+*.sql.gz
+
+# psql 历史记录
+.psql_history
+
+# 日志与临时文件
+*.log
+*.tmp
+
+# 编辑器与系统文件
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Project Memory Bank"
+  short_description: "Initialize project memory-bank structure"
+  default_prompt: "Use $project-memory-bank to initialize or repair this project's memory-bank and AGENTS.md rules."
+policy:
+  allow_implicit_invocation: false

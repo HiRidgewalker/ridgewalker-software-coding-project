@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Animation - 动画效果</title>
+  <style>
+    /* 全局重置 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 40px;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    h2 {
+      margin: 40px 0 20px;
+      color: #555;
+      font-size: 20px;
+    }
+
+    /* 展示区域容器 */
+    .demo-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    /* 基础盒子样式 */
+    .demo-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 150px;
+    }
+
+    .box {
+      width: 80px;
+      height: 80px;
+      background: #3b82f6;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    .label {
+      color: #666;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* ========== 1. @keyframes 基础 ========== */
+    /*
+     * @keyframes 规则用于定义动画序列
+     * 可以在动画过程中改变元素的多个样式属性
+     *
+     * 语法：
+     * @keyframes animation-name {
+     *   from { 初始状态 }
+     *   to   { 结束状态 }
+     * }
+     *
+     * 或使用百分比：
+     * @keyframes animation-name {
+     *   0%   { 初始状态 }
+     *   50%  { 中间状态 }
+     *   100% { 结束状态 }
+     * }
+     */
+
+    /* 简单上下移动动画 */
+    @keyframes moveUpDown {
+      /* from: 动画开始时 */
+      from {
+        transform: translateY(0);
+      }
+      /* to: 动画结束时 */
+      to {
+        transform: translateY(-30px);
+      }
+    }
+
+    .animation-basic {
+      /* animation: name duration timing-function delay iteration-count direction */
+      animation: moveUpDown 1s ease infinite alternate;
+    }
+
+    /*
+     * animation 属性详解：
+     * - name: @keyframes 定义的动画名称
+     * - duration: 动画时长（如 1s, 500ms）
+     * - timing-function: 缓动函数
+     * - delay: 延迟时间
+     * - iteration-count: 播放次数（infinite 为无限循环）
+     * - direction: 播放方向（normal, reverse, alternate, alternate-reverse）
+     */
+
+
+    /* ========== 2. 颜色和大小变化 ========== */
+    @keyframes colorSize {
+      0% {
+        background: #3b82f6;
+        transform: scale(1);
+      }
+      50% {
+        background: #8b5cf6;
+        transform: scale(1.3);
+      }
+      100% {
+        background: #3b82f6;
+        transform: scale(1);
+      }
+    }
+
+    .animation-color-size {
+      animation: colorSize 2s ease infinite;
+    }
+
+
+    /* ========== 3. 旋转动画 ========== */
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .animation-spin {
+      /* 让正方形看起来像加载中 */
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .animation-spin-slow {
+      animation: spin-slow 3s linear infinite;
+    }
+
+
+    /* ========== 4. 位置移动动画 ========== */
+    @keyframes moveRight {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(50px);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    .animation-move {
+      animation: moveRight 2s ease-in-out infinite;
+    }
+
+
+    /* ========== 5. 淡入淡出 ========== */
+    @keyframes fadeInOut {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.3;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .animation-fade {
+      animation: fadeInOut 2s ease infinite;
+    }
+
+
+    /* ========== 6. 多阶段复杂动画 ========== */
+    @keyframes complexDemo {
+      0% {
+        transform: translateX(-30px) rotate(0deg);
+        background: #3b82f6;
+      }
+      25% {
+        transform: translateX(0) rotate(90deg);
+        background: #22c55e;
+      }
+      50% {
+        transform: translateX(30px) rotate(180deg);
+        background: #f59e0b;
+      }
+      75% {
+        transform: translateX(0) rotate(270deg);
+        background: #ef4444;
+      }
+      100% {
+        transform: translateX(-30px) rotate(360deg);
+        background: #3b82f6;
+      }
+    }
+
+    .animation-complex {
+      animation: complexDemo 3s ease-in-out infinite;
+    }
+
+
+    /* ========== 7. 动画direction（方向）========== */
+    @keyframes slide {
+      from { transform: translateX(0); }
+      to   { transform: translateX(60px); }
+    }
+
+    /* normal: 每次从头开始 */
+    .direction-normal {
+      animation: slide 1s ease infinite;
+    }
+
+    /* reverse: 反向播放 */
+    .direction-reverse {
+      animation: slide 1s ease infinite reverse;
+    }
+
+    /* alternate: 来回播放（正-反-正） */
+    .direction-alternate {
+      animation: slide 1s ease infinite alternate;
+    }
+
+    /* alternate-reverse: 反向来回播放 */
+    .direction-alternate-reverse {
+      animation: slide 1s ease infinite alternate-reverse;
+    }
+
+
+    /* ========== 8. 动画 delay（延迟）========== */
+    .animation-delay-1 {
+      animation: moveUpDown 1s ease infinite;
+      animation-delay: 0s;
+    }
+
+    .animation-delay-2 {
+      animation: moveUpDown 1s ease infinite;
+      animation-delay: 0.3s;
+    }
+
+    .animation-delay-3 {
+      animation: moveUpDown 1s ease infinite;
+      animation-delay: 0.6s;
+    }
+
+    /* 三个方块依次启动，制造波浪效果 */
+
+
+    /* ========== 9. 贝塞尔曲线 cubic-bezier ========== */
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
+    }
+
+    .timing-ease {
+      animation: bounce 1s ease infinite;
+    }
+
+    .timing-cubic {
+      /* cubic-bezier(0.68, -0.55, 0.265, 1.55) - 回弹效果 */
+      animation: bounce 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    }
+
+    /* 贝塞尔曲线说明：
+     * cubic-bezier(p1x, p1y, p2x, p2y)
+     * 控制点在贝塞尔曲线的两个控制点
+     * 常见的预定义曲线可以用 timing-function 的值
+     * 自定义可以造 https://cubic-bezier.com 生成
+     */
+
+
+    /* ========== 10. fill-mode（动画前后状态）========== */
+    /*
+     * animation-fill-mode: mode
+     * 作用：控制动画在播放前后的样式状态
+     *
+     * 值说明：
+     * - none: 默认值，动画前后都不保持样式
+     * - forwards: 动画结束后保持最后一帧的样式
+     * - backwards: 动画开始前应用第一帧的样式
+     * - both: 动画前后都保持样式（结合 forwards 和 backwards）
+     */
+
+    /* 使用更明显的动画来展示 fill-mode */
+    @keyframes fillDemo {
+      from {
+        background: #22c55e;  /* 绿色 */
+        transform: scale(1);
+      }
+      to {
+        background: #ef4444;  /* 红色 */
+        transform: scale(1.5);
+      }
+    }
+
+    /* 初始状态：蓝色，缩放 1 */
+    .fill-box {
+      background: #3b82f6;
+      transform: scale(1);
+    }
+
+    /* none: 动画前后都不保持样式，结束后回到初始状态 */
+    .fill-none {
+      animation: fillDemo 1s ease forwards;
+    }
+
+    /* forwards: 动画结束后保持最后一帧（红色，大尺寸） */
+    .fill-forwards {
+      animation: fillDemo 1s ease forwards;
+    }
+
+    /* backwards: 动画开始前应用第一帧（绿色），结束后回到初始状态 */
+    .fill-backwards {
+      animation: fillDemo 1s ease backwards;
+    }
+
+    /* both: 动画开始前应用第一帧，结束后保持最后一帧 */
+    .fill-both {
+      animation: fillDemo 1s ease both;
+    }
+
+    /* 为了展示效果，添加按钮控制 */
+    .btn-run {
+      padding: 8px 16px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 4px;
+    }
+
+    .btn-run:hover {
+      background: #555;
+    }
+
+    .reset-btn {
+      padding: 8px 16px;
+      background: #666;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS Animation - 动画效果</h1>
+
+  <!-- 1. 基础动画 -->
+  <h2>1. 基础动画 - 上下移动</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box animation-basic"></div>
+        <p class="label">@keyframes<br>上下移动</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 2. 颜色和大小变化 -->
+  <h2>2. 颜色和大小变化</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box animation-color-size"></div>
+        <p class="label">颜色 + 缩放<br>同步变化</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 3. 旋转动画 -->
+  <h2>3. 旋转动画</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box animation-spin"></div>
+        <p class="label">spin 1s<br>快速旋转</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box animation-spin-slow"></div>
+        <p class="label">spin 3s<br>慢速旋转</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 4. 位置移动 -->
+  <h2>4. 位置移动动画</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box animation-move"></div>
+        <p class="label">左右移动<br>来来回回</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 5. 淡入淡出 -->
+  <h2>5. 淡入淡出效果</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box animation-fade"></div>
+        <p class="label">opacity<br>淡入淡出</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 6. 复杂动画 -->
+  <h2>6. 复杂动画 - 多属性变化</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box animation-complex"></div>
+        <p class="label">位置 + 旋转 + 颜色<br>全部变化</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 7. 动画方向 -->
+  <h2>7. 动画方向 (direction)</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box direction-normal"></div>
+        <p class="label">normal<br>每次重播</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box direction-reverse"></div>
+        <p class="label">reverse<br>反向播放</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box direction-alternate"></div>
+        <p class="label">alternate<br>来回播放</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box direction-alternate-reverse"></div>
+        <p class="label">alternate-reverse<br>反向来回</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 8. 动画延迟 - 波浪效果 -->
+  <h2>8. 动画延迟 - 波浪效果</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box animation-delay-1"></div>
+        <p class="label">delay 0s</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box animation-delay-2"></div>
+        <p class="label">delay 0.3s</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box animation-delay-3"></div>
+        <p class="label">delay 0.6s</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 9. 贝塞尔曲线 -->
+  <h2>9. 自定义缓动函数</h2>
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box timing-ease"></div>
+        <p class="label">ease<br>普通</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box timing-cubic"></div>
+        <p class="label">cubic-bezier<br>回弹效果</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 10. fill-mode -->
+  <h2>10. fill-mode（动画前后状态）</h2>
+  <p style="text-align:center;color:#666;margin-bottom:20px;">
+    点击"播放动画"按钮查看效果，注意对比每个方块动画前后的状态变化
+  </p>
+
+  <!-- 控制按钮 -->
+  <div style="text-align:center;margin-bottom:20px;">
+    <button class="btn-run" onclick="runAnimations()">播放动画</button>
+    <button class="reset-btn" onclick="resetAnimations()">重置</button>
+  </div>
+
+  <div class="demo-container">
+    <div class="demo-row">
+      <div class="demo-box">
+        <div class="box fill-box fill-none" id="fill-none-box"></div>
+        <p class="label">none<br>前后都不保持<br>结束后回到初始状态</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box fill-box fill-forwards" id="fill-forwards-box"></div>
+        <p class="label">forwards<br>结束后保持最后一帧<br>（红色、大尺寸）</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box fill-box fill-backwards" id="fill-backwards-box"></div>
+        <p class="label">backwards<br>开始前应用第一帧<br>（绿色）</p>
+      </div>
+
+      <div class="demo-box">
+        <div class="box fill-box fill-both" id="fill-both-box"></div>
+        <p class="label">both<br>开始前第一帧<br>结束后保持最后一帧</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 重新触发动画
+    function runAnimations() {
+      const boxes = ['fill-none-box', 'fill-forwards-box', 'fill-backwards-box', 'fill-both-box'];
+      boxes.forEach(id => {
+        const el = document.getElementById(id);
+        el.style.animation = 'none';
+        el.offsetHeight; // 触发回流
+        el.style.animation = '';
+      });
+    }
+
+    // 重置所有方块
+    function resetAnimations() {
+      const boxes = ['fill-none-box', 'fill-forwards-box', 'fill-backwards-box', 'fill-both-box'];
+      boxes.forEach(id => {
+        const el = document.getElementById(id);
+        el.style.animation = 'none';
+        el.style.background = '#3b82f6';
+        el.style.transform = 'scale(1)';
+      });
+    }
+  </script>
+</body>
+</html>

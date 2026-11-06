@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package stage4;
+
+import "common.proto";
+
+message UserRequest {
+  int64 user_id = 1;
+  bool include_tags = 2;
+}
+
+message SearchUsersRequest {
+  string keyword = 1;
+  int32 limit = 2;
+}
+
+message UserReply {
+  message Profile {
+    string email = 1;
+    Address address = 2;
+  }
+
+  int64 user_id = 1;
+  string name = 2;
+  int32 age = 3;
+  bool active = 4;
+  repeated string tags = 5;
+  Profile profile = 6;
+}
+
+message SearchUsersReply {
+  repeated UserReply users = 1;
+}
+
+service UserService {
+  rpc GetUser (UserRequest) returns (UserReply);
+  rpc SearchUsers (SearchUsersRequest) returns (SearchUsersReply);
+}
+

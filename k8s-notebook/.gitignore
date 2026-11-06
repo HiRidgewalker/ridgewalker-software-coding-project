@@ -1,0 +1,15 @@
+# 本地集群配置与凭证
+.kube/
+kubeconfig
+*.kubeconfig
+
+# 日志与临时文件
+*.log
+*.tmp
+*.swp
+
+# 编辑器与系统文件
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

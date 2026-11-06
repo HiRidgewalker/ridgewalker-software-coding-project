@@ -1,0 +1,43 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+.venv.bak/
+venv/
+env/
+
+# IDE / editor
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local runtime / logs
+*.log
+*.pid
+
+# Downloaded models and other large local artifacts
+models/
+
+# Hugging Face / model download caches
+.cache/
+huggingface/
+hf_cache/
+
+# Jupyter / checkpoints
+.ipynb_checkpoints/
+
+# Local merge / patch leftovers
+*.orig

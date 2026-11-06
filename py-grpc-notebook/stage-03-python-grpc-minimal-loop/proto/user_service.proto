@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package stage3;
+
+message UserRequest {
+  int64 user_id = 1;
+}
+
+message UserReply {
+  int64 user_id = 1;
+  string name = 2;
+  bool active = 3;
+}
+
+service UserService {
+  rpc GetUser (UserRequest) returns (UserReply);
+}
+

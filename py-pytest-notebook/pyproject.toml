@@ -1,0 +1,10 @@
+[project]
+name = "learning-pytest-notebook"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.0",
+]

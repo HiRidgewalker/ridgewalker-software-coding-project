@@ -1,0 +1,28 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Local configuration and runtime files
+.env
+runtime/*
+!runtime/.gitkeep
+!runtime/logs/
+runtime/logs/*
+!runtime/logs/.gitkeep
+.coverage
+.pytest_cache/
+.ruff_cache/
+
+# 编辑器、系统文件与日志
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log

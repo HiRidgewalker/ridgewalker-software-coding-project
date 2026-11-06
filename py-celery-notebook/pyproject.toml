@@ -1,0 +1,35 @@
+[project]
+name = "fastapi-celery-template"
+version = "0.1.0"
+description = "A minimal FastAPI, Celery, RabbitMQ, uv and Supervisor template"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "celery>=5.5,<6",
+    "fastapi>=0.116,<0.117",
+    "pydantic-settings>=2.10,<3",
+    "supervisor>=4.2,<5",
+    "uvicorn[standard]>=0.35,<1",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28,<0.29",
+    "pytest>=8.4,<10",
+    "pytest-asyncio>=1,<2",
+    "pytest-cov>=6.2,<8",
+    "ruff>=0.12,<1",
+]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+asyncio_mode = "auto"
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

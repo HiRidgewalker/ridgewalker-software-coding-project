@@ -1,0 +1,9 @@
+interface:
+  display_name: "fastapi-project-rules"
+  short_description: "按 controller/service/dao 分层组织 FastAPI 项目，统一路由、依赖注入、事务会话与异常日志边界"
+policy:
+  allow_implicit_invocation: true
+  products:
+    - "chatgpt"
+    - "codex"
+    - "api"

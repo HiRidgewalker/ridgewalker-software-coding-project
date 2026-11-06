@@ -1,0 +1,28 @@
+# Python 生成文件
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# 虚拟环境与本地配置
+.venv
+.env
+.env.*
+!.env.example
+
+# 测试与覆盖率产物
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 编辑器与操作系统文件
+.idea/
+.vscode/
+.DS_Store
+
+# Supervisord 产生的本地运行状态
+/runtime/supervisor.sock
+/runtime/supervisord.pid
+/runtime/logs/*.log

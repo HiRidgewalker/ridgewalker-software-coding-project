@@ -1,0 +1,5 @@
+interface:
+  display_name: "ruff-check-format"
+  short_description: "带确认门控的 Ruff 扫描与修复，支持目录与单文件两种范围"
+policy:
+  allow_implicit_invocation: false

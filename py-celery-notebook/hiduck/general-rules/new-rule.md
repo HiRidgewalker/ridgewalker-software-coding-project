@@ -1,0 +1,1 @@
+- python代码中的字符串格式化统一使用 f-string ，f-string不满足则使用format string，不允许使用其他风格的字符串格式化，同时日志打异常，直接使用logger.Exception, 该方法具有直接打印堆栈的功能，而不需要exc配置开启

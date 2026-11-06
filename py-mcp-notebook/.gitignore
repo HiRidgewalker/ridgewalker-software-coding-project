@@ -1,0 +1,25 @@
+.venv/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+
+# 构建产物与工具缓存
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# 本地配置与日志
+.env
+.env.*
+!.env.example
+*.log
+
+# 编辑器与系统文件
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

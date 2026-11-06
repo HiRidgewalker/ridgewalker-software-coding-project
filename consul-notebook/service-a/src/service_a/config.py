@@ -1,0 +1,6 @@
+SERVICE_BIND_HOST = "0.0.0.0"
+SERVICE_ADVERTISE_HOST = "127.0.0.1"
+SERVICE_PORT = 8001
+CONSUL_HEALTH_CHECK_URL = (
+    f"http://host.docker.internal:{SERVICE_PORT}/health"
+)

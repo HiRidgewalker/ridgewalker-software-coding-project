@@ -1,0 +1,9 @@
+interface:
+  display_name: "python-coding-rules"
+  short_description: "编写、修改、重构或审查 Python 源代码时遵守的强制规则，覆盖语言版本、语法克制、代码组织、命名、类型注解、外部依赖隔离、异常设计、文档与入口文件。"
+policy:
+  allow_implicit_invocation: false
+  products:
+    - "chatgpt"
+    - "codex"
+    - "api"

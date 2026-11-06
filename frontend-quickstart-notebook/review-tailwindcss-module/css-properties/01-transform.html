@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Transform - 基础变换</title>
+  <style>
+    /* 全局重置 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 40px;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    /* 展示区域容器 */
+    .demo-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+
+    /* 基础盒子样式 */
+    .demo-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background: #3b82f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    .label {
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* ========== 1. translate - 平移 ========== */
+    /*
+     * transform: translate(x, y)
+     * 作用：在水平方向和垂直方向移动元素
+     * 参数：x 轴移动距离，y 轴移动距离
+     * 单位：px、rem、% 等
+     *
+     * 子属性：
+     * - translateX(x): 仅水平移动
+     * - translateY(y): 仅垂直移动
+     */
+
+    .translate-x {
+      /* translateX(50px) - 向右移动 50px */
+      transform: translateX(40px);
+    }
+
+    .translate-y {
+      /* translateY(30px) - 向下移动 30px */
+      transform: translateY(20px);
+    }
+
+    .translate-xy {
+      /* translate(30px, -20px) - 右移30px，上移20px */
+      transform: translate(30px, -10px);
+    }
+
+
+    /* ========== 2. rotate - 旋转 ========== */
+    /*
+     * transform: rotate(angle)
+     * 作用：旋转元素
+     * 参数：角度，单位可以是 deg（度）或 turn（圈）
+     * 正值：顺时针旋转
+     * 负值：逆时针旋转
+     */
+
+    .rotate-45 {
+      /* rotate(45deg) - 顺时针旋转 45 度 */
+      transform: rotate(45deg);
+    }
+
+    .rotate-90 {
+      /* rotate(90deg) - 顺时针旋转 90 度（直角） */
+      transform: rotate(90deg);
+    }
+
+    .rotate-negative {
+      /* rotate(-30deg) - 逆时针旋转 30 度 */
+      transform: rotate(-30deg);
+    }
+
+    .rotate-turn {
+      /* rotate(0.5turn) - 旋转半圈（180度） */
+      transform: rotate(0.5turn);
+    }
+
+
+    /* ========== 3. scale - 缩放 ========== */
+    /*
+     * transform: scale(x, y)
+     * 作用：放大或缩小元素
+     * 参数：缩放倍数，1 为原始大小
+     * > 1: 放大
+     * < 1: 缩小
+     * 负值: 翻转并缩放
+     *
+     * 子属性：
+     * - scaleX(x): 仅水平缩放
+     * - scaleY(y): 仅垂直缩放
+     */
+
+    .scale-up {
+      /* scale(1.5) - 放大 1.5 倍 */
+      transform: scale(1.5);
+    }
+
+    .scale-down {
+      /* scale(0.7) - 缩小为 70% */
+      transform: scale(0.7);
+    }
+
+    .scale-xy {
+      /* scale(1.2, 0.8) - 宽放大 20%，高缩小 20% */
+      transform: scale(1.2, 0.8);
+    }
+
+    .scaleX {
+      /* scaleX(-1) - 水平翻转 */
+      transform: scaleX(-1);
+    }
+
+
+    /* ========== 4. 综合使用 ========== */
+    /*
+     * transform 可以同时应用多个变换
+     * 多个值之间用空格分隔
+     * 变换顺序会影响最终效果
+     */
+
+    .combo-1 {
+      /* 先旋转 45 度，再平移 */
+      transform: rotate(45deg) translate(30px, 0);
+    }
+
+    .combo-2 {
+      /* 先平移，再旋转（效果不同！） */
+      transform: translate(30px, 0) rotate(45deg);
+    }
+
+    .combo-3 {
+      /* 旋转 + 缩放 */
+      transform: rotate(180deg) scale(0.8);
+    }
+
+    .combo-4 {
+      /* 完整组合：平移 + 旋转 + 缩放 */
+      transform: translate(20px, -10px) rotate(-15deg) scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS Transform - 基础变换属性</h1>
+
+  <div class="demo-container">
+    <!-- 1. translate 平移 -->
+    <div class="demo-box">
+      <div class="box translate-x">translateX</div>
+      <p class="label">translateX(50px)<br>向右移动</p>
+    </div>
+
+    <div class="demo-box">
+      <div class="box translate-y">translateY</div>
+      <p class="label">translateY(30px)<br>向下移动</p>
+    </div>
+
+    <div class="demo-box">
+      <div class="box translate-xy">translate</div>
+      <p class="label">translate(30px, -20px)<br>对角移动</p>
+    </div>
+
+
+    <!-- 2. rotate 旋转 -->
+    <div class="demo-box">
+      <div class="box rotate-45">rotate</div>
+      <p class="label">rotate(45deg)<br>顺时针旋转</p>
+    </div>
+
+    <div class="demo-box">
+      <div class="box rotate-90">rotate</div>
+      <p class="label">rotate(90deg)<br>旋转直角</p>
+    </div>
+
+    <div class="demo-box">
+      <div class="box rotate-negative">rotate</div>
+      <p class="label">rotate(-30deg)<br>逆时针旋转</p>
+    </div>
+
+    <div class="demo-box">
+      <div class="box rotate-turn">rotate</div>
+      <p class="label">rotate(0.5turn)<br>旋转半圈</p>
+    </div>
+
+
+    <!-- 3. scale 缩放 -->
+    <div class="demo-box">
+      <div class="box scale-up">scale</div>
+      <p class="label">scale(1.5)<br>放大</p>
+    </div>
+
+    <div class="demo-box">
+      <div class="box scale-down">scale</div>
+      <p class="label">scale(0.7)<br>缩小</p>
+    </div>
+
+    <div class="demo-box">
+      <div class="box scale-xy">scale</div>
+      <p class="label">scale(1.2, 0.8)<br>宽高不同</p>
+    </div>
+
+    <div class="demo-box">
+      <div class="box scaleX">scaleX</div>
+      <p class="label">scaleX(-1)<br>水平翻转</p>
+    </div>
+
+
+    <!-- 4. 综合使用 -->
+    <div class="demo-box">
+      <div class="box combo-1">combo</div>
+      <p class="label">rotate + translate<br>先旋转后平移</p>
+    </div>
+
+    <div class="demo-box">
+      <div class="box combo-2">combo</div>
+      <p class="label">translate + rotate<br>先平移后旋转</p>
+    </div>
+
+    <div class="demo-box">
+      <div class="box combo-3">combo</div>
+      <p class="label">rotate + scale<br>旋转并缩放</p>
+    </div>
+
+    <div class="demo-box">
+      <div class="box combo-4">combo</div>
+      <p class="label">translate + rotate + scale<br>完整组合</p>
+    </div>
+  </div>
+</body>
+</html>
